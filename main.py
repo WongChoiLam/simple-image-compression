@@ -47,8 +47,8 @@ cluster_centres = img.reshape(M*N, 3)[sample_index]
 #initialize index array
 min_index = None
 for iteration in range(max_iteration):
+    #compute the average of each group of samples
     min_index = get_index(img, cluster_centres)
-
     total = np.zeros((16,3))
     total_samples = np.zeros(16)
     for i in range(M*N):
@@ -57,6 +57,7 @@ for iteration in range(max_iteration):
     total_samples = np.atleast_2d(total_samples).T
     total_samples = np.tile(total_samples, (1,3))
     avg_distance = total / total_samples
+    #update the cluster centres with the average value of assigned samples
     cluster_centres = avg_distance
 cluster_centres = np.around(cluster_centres, decimals = 0)
 compressed_img = np.zeros((M*N,C))
