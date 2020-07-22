@@ -62,7 +62,7 @@ def compress_img(img, K, max_iteration):
     #initialize index array
     min_index = None
     for iteration in range(max_iteration):
-        print(str(iteration + 1) + "\t/" + str(max_iteration) + '\n')
+        #print(str(iteration + 1) + "\t/" + str(max_iteration))
         #compute the average of each group of samples
         min_index = get_index(img, cluster_centres)
         #update the cluster centres with the average value of assigned samples
@@ -70,7 +70,7 @@ def compress_img(img, K, max_iteration):
     new_img = rebuild_image((M,N,C), min_index, cluster_centres)
     return new_img.astype(np.int32)
 
-img = pyplot.imread('in\lenna.jpg')
+img = pyplot.imread('bird.jpg')
 compressed_img16 = compress_img(img, 16, 10)
 fig = pyplot.figure()
 a = fig.add_subplot(1, 2, 1)
